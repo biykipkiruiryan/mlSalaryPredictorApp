@@ -1,5 +1,3 @@
-import pickle
-from pyexpat import model
 import numpy as np
 import streamlit as st
 
@@ -52,29 +50,20 @@ with col13:
 with col14:
     st.write('')
 
-if predict_btn:
-        try:
-         
-            job_idx = [0, 1, 2]
-            inp1 = int(age)
-            inp2 = float(experience)
-            inp3 = int(job_idx[job_list.index(job)])
-            inp4 = int(edu_list.index(education))
-            inp5 = int(gen_list.index(gender))
-            X = [inp1, inp2, inp3, inp4, inp5]
+if(predict_btn):
+    inp1 = int(age)
+    inp2 = float(experience)
+    inp3 = int(job_idx[job_list.index(job)])
+    inp4 = int(edu_list.index(education))
+    inp5 = int(gen_list.index(gender))
+    X = [inp1, inp2, inp3, inp4, inp5]
+    salary = model.predict([X])
+    col15, col16, col17 = st.columns(3)
+    with col15:
+        st.write('')    
+    with col16:
+        st.text(f"Estimated salary: ${int(salary[0])}")
+    with col17:
+        st.write('')
 
-            
-            salary = model.predict([X])
 
-            # Display results
-            col15, col16, col17 = st.columns(3)
-            with col15:
-                st.write('')    
-            with col16:
-                st.text(f"Estimated salary: ${int(salary[0])}")
-            with col17:
-                st.write('')
-        except Exception as e:
-            st.error(f"An error occurred during prediction: {e}")
-else:
-    st.error("Model is not loaded. Please check the model path and try again.")
