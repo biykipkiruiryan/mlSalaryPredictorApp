@@ -2,7 +2,7 @@ import pickle
 import numpy as np
 import streamlit as st
 
-model = pickle.load(open('model.pkl', 'rb'))
+model_path = 'model.pkl'
 
 col0, col1, col2, col3, col4, col5, col6 = st.columns(7)
 with col0:
