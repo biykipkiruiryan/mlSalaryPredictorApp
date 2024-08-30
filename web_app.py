@@ -3,8 +3,7 @@ from pyexpat import model
 import numpy as np
 import streamlit as st
 
-model_path = 'model.pkl'
-with open(model_path, 'rb') as file:
+with open('model.pkl', 'rb') as file:
     model = pickle.load(file)
 
 col0, col1, col2, col3, col4, col5, col6 = st.columns(7)
